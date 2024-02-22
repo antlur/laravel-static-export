@@ -39,9 +39,9 @@ class Export
     {
         $filename = ($path === '/')
             ? 'index.html'
-            : $path . '/index.html';
+            : $path.'/index.html';
 
-        $filepath = config('static-export.output_path') . '/' . $filename;
+        $filepath = config('static-export.output_path').'/'.$filename;
 
         File::ensureDirectoryExists(dirname($filepath));
 
@@ -60,7 +60,7 @@ class Export
 
         // Copy public directory except index.php
         File::copyDirectory(public_path(), $outputPath);
-        File::delete($outputPath . '/index.php');
+        File::delete($outputPath.'/index.php');
 
         // Copy storage directory
         // File::copyDirectory(storage_path('app/public'), $outputPath . '/storage');
