@@ -14,7 +14,7 @@ class Export
 
     public function export()
     {
-        File::ensureDirectoryExists(config('static-export.output_path'));
+        $this->initOutputDirectory();
 
         $paths = $this->router->exportPaths();
 
@@ -39,8 +39,26 @@ class Export
     {
         $filename = ($path === '/')
             ? 'index.html'
-            : $path.'/index.html';
+            : $path . '/index.html';
 
-        file_put_contents(config('static-export.output_path').'/'.$filename, $html);
+        file_put_contents(config('static-export.output_path') . '/' . $filename, $html);
+    }
+
+    private function initOutputDirectory()
+    {
+        $outputPath = config('static-export.output_path');
+
+        if (config('static-export.clear_before_export')) {
+            File::deleteDirectory($outputPath);
+        }
+
+        File::ensureDirectoryExists($outputPath);
+
+        // Copy public directory except index.php
+        File::copyDirectory(public_path(), $outputPath);
+        File::delete($outputPath . '/index.php');
+
+        // Copy storage directory
+        // File::copyDirectory(storage_path('app/public'), $outputPath . '/storage');
     }
 }
