@@ -41,7 +41,11 @@ class Export
             ? 'index.html'
             : $path . '/index.html';
 
-        file_put_contents(config('static-export.output_path') . '/' . $filename, $html);
+        $filepath = config('static-export.output_path') . '/' . $filename;
+
+        File::ensureDirectoryExists(dirname($filepath));
+
+        File::put($filepath, $html);
     }
 
     private function initOutputDirectory()
