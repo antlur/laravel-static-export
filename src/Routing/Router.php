@@ -2,14 +2,14 @@
 
 namespace Antlur\Export\Routing;
 
+use Antlur\Export\Attributes\ExportPaths;
 use Closure;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionFunction;
 use ReflectionMethod;
-use ReflectionAttribute;
-use Antlur\Export\Attributes\ExportPaths;
-use Illuminate\Routing\Route as RoutingRoute;
 
 class Router
 {
@@ -32,6 +32,7 @@ class Router
 
             if (is_callable($routeAction['uses'])) {
                 $paths[] = $route->uri();
+
                 continue;
             }
 
@@ -46,8 +47,9 @@ class Router
                     return $attribute->getName() === ExportPaths::class;
                 });
 
-            if (!$attribute) {
+            if (! $attribute) {
                 $paths[] = $route->uri();
+
                 continue;
             }
 
@@ -65,12 +67,13 @@ class Router
 
     /**
      * Filter out the fallback `{any}` and ignition routes
+     *
      * @return RoutingRoute[]
      */
     private function removeNonAppRoutes(array $routes): array
     {
         return array_filter($routes, function (RoutingRoute $r) {
-            return !$this->isVendorRoute($r) && !$this->isFrameworkController($r);
+            return ! $this->isVendorRoute($r) && ! $this->isFrameworkController($r);
         });
     }
 

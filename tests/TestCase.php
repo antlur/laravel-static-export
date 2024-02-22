@@ -2,9 +2,9 @@
 
 namespace Antlur\Export\Tests;
 
+use Antlur\Export\LaravelExportServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Antlur\Export\LaravelExportServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Antlur\\LaravelExport\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'Antlur\\LaravelExport\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

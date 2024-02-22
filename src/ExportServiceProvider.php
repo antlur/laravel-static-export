@@ -2,9 +2,9 @@
 
 namespace Antlur\Export;
 
+use Antlur\Export\Commands\ExportCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Antlur\Export\Commands\ExportCommand;
 
 class ExportServiceProvider extends PackageServiceProvider
 {

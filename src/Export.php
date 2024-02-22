@@ -39,8 +39,8 @@ class Export
     {
         $filename = ($path === '/')
             ? 'index.html'
-            : $path  . '/index.html';
+            : $path.'/index.html';
 
-        file_put_contents(config('static-export.output_path') . '/' . $filename, $html);
+        file_put_contents(config('static-export.output_path').'/'.$filename, $html);
     }
 }

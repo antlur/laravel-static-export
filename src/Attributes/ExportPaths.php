@@ -2,8 +2,8 @@
 
 namespace Antlur\Export\Attributes;
 
-use Attribute;
 use Antlur\Export\Contracts\PathProvider;
+use Attribute;
 
 #[Attribute]
 class ExportPaths
@@ -18,7 +18,7 @@ class ExportPaths
             return $this->exportPaths;
         }
 
-        $exception = new \Exception('ExportPaths must be an array or an instance of ' . PathProvider::class);
+        $exception = new \Exception('ExportPaths must be an array or an instance of '.PathProvider::class);
 
         try {
             $exportPaths = app($this->exportPaths);
@@ -26,7 +26,7 @@ class ExportPaths
             throw $exception;
         }
 
-        if (!$exportPaths instanceof PathProvider) {
+        if (! $exportPaths instanceof PathProvider) {
             throw $exception;
         }
 
