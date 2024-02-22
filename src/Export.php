@@ -29,7 +29,7 @@ class Export
     {
         $request = Request::create($url);
 
-        $kernel = app(config('static-export.kernal_namespace'));
+        $kernel = app(config('static-export.kernel_namespace'));
         $response = $kernel->handle($request);
 
         return $response->getContent();

@@ -5,5 +5,5 @@ return [
 
     'clear_before_export' => true,
 
-    'kernal_namespace' => 'App\Http\Kernel',
+    'kernel_namespace' => 'App\Http\Kernel',
 ];
