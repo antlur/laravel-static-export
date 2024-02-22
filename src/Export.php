@@ -19,9 +19,12 @@ class Export
         $paths = $this->router->exportPaths();
 
         foreach ($paths as $path) {
-            $html = $this->render($path);
-
-            $this->save($path, $html);
+            try {
+                $html = $this->render($path);
+                $this->save($path, $html);
+            } catch (\Exception $e) {
+                echo $e->getMessage().PHP_EOL;
+            }
         }
     }
 
@@ -31,6 +34,10 @@ class Export
 
         $kernel = app(config('static-export.kernel_namespace'));
         $response = $kernel->handle($request);
+
+        if (! $response->isSuccessful()) {
+            throw new \Exception("Failed to render $url");
+        }
 
         return $response->getContent();
     }
