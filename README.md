@@ -35,9 +35,45 @@ return [
 
 ## Usage
 
+```bash
+php artisan export
+```
+
+## Dynamic Data during static site generation
+
+When generating the static site, you can use the ExportPaths attribute to define which routes should be generated. This is useful when you have dynamic data that you want to generate static pages for. For example, if you have a blog and you want to generate static pages for each blog post, you can use the ExportPaths attribute to define which routes should be generated. The rest of your logic can be handled as if it was a normal Laravel application.
+
 ```php
-$laravelExport = new Antlur\Export();
-echo $laravelExport->echoPhrase('Hello, Antlur!');
+// web.php
+Route::get('/blog/{slug}', [BlogController::class, 'show']);
+
+// app/Http/Controllers/BlogController.php
+use Antlur\Export\Attributes\ExportPaths;
+
+class BlogController
+{
+    // You can pass a class that implements PathProvider
+    #[ExportPaths(BlogPostPaths::class)]
+    public function show(string $name)
+    {}
+
+    // Or you can pass an array of paths directly
+    #[ExportPaths(['/blog/first-post', '/blog/second-post'])]
+    public function show(string $name)
+    {}
+}
+
+// app/PathProviders/BlogPostPaths.php
+class BlogPostPaths implements \Antlur\Export\Contracts\PathProvider
+{
+    public function paths(): array
+    {
+        return [
+            '/blog/first-post',
+            '/blog/second-post',
+        ];
+    }
+}
 ```
 
 ## Testing
