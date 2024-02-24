@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-static-export` will be documented in this file.
 
+## Resolve Kernel from the container - 2024-02-24
+
+**Full Changelog**: https://github.com/antlur/laravel-static-export/compare/v0.1.1...v0.1.2
+
 ## Don't save unsuccessful responses - 2024-02-22
 
 **Full Changelog**: https://github.com/antlur/laravel-static-export/compare/v0.1.0...v0.1.1
