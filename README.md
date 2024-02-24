@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/antlur/laravel-static-export/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/antlur/laravel-static-export/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/antlur/laravel-static-export.svg?style=flat-square)](https://packagist.org/packages/antlur/laravel-static-export)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Host your Laravel site on Netlify, Vercel, or any other static site host. This package will generate static files from your Laravel site with very little setup. A convenient attribute is provided to provide routes with dynamic parameters.
 
 ## Installation
 
@@ -28,8 +28,6 @@ return [
     'output_path' => base_path('dist'),
 
     'clear_before_export' => true,
-
-    'kernel_namespace' => 'App\Http\Kernel',
 ];
 ```
 
